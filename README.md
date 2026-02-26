@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/claude-sfx"><img src="https://img.shields.io/npm/v/claude-sfx" alt="npm version"></a>
+  <a href="https://www.npmjs.com/package/@mcptoolshop/claude-sfx"><img src="https://img.shields.io/npm/v/@mcptoolshop/claude-sfx" alt="npm version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue" alt="MIT License"></a>
   <a href="https://mcp-tool-shop-org.github.io/claude-sfx/"><img src="https://img.shields.io/badge/Landing_Page-live-blue" alt="Landing Page"></a>
 </p>
@@ -17,7 +17,7 @@ Procedural audio feedback for [Claude Code](https://docs.anthropic.com/en/docs/c
 ## Quick Start
 
 ```bash
-npm install -g claude-sfx
+npm install -g @mcptoolshop/claude-sfx
 cd your-project
 claude-sfx init       # install hooks into .claude/settings.json
 claude-sfx demo       # hear all 7 verbs

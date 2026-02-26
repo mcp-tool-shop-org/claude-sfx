@@ -1,5 +1,5 @@
 {
-  "name": "claude-sfx",
+  "name": "@mcptoolshop/claude-sfx",
   "version": "0.1.0",
   "description": "Procedural audio feedback for Claude Code — UX for agentic coding",
   "type": "module",
@@ -33,6 +33,9 @@
     "url": "https://github.com/mcp-tool-shop-org/claude-sfx.git"
   },
   "homepage": "https://mcp-tool-shop-org.github.io/claude-sfx/",
+  "publishConfig": {
+    "access": "public"
+  },
   "engines": {
     "node": ">=18.0.0"
   },
