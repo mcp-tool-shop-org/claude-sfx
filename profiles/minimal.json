@@ -1,0 +1,202 @@
+{
+  "name": "minimal",
+  "description": "Tasteful UI tones — subtle, professional, daily-driver",
+  "verbs": {
+    "intake": {
+      "type": "tone",
+      "waveform": "sine",
+      "frequency": 440,
+      "frequencyEnd": 620,
+      "duration": 0.15,
+      "envelope": {
+        "attack": 0.02,
+        "decay": 0.06,
+        "sustain": 0.4,
+        "release": 0.04
+      },
+      "gain": 0.6
+    },
+    "transform": {
+      "type": "tone",
+      "waveform": "sine",
+      "frequency": 520,
+      "duration": 0.1,
+      "envelope": {
+        "attack": 0.005,
+        "decay": 0.03,
+        "sustain": 0.2,
+        "release": 0.03
+      },
+      "gain": 0.55,
+      "fmRatio": 1.5,
+      "fmDepth": 30
+    },
+    "commit": {
+      "type": "tone",
+      "waveform": "sine",
+      "frequency": 840,
+      "duration": 0.08,
+      "envelope": {
+        "attack": 0.005,
+        "decay": 0.03,
+        "sustain": 0.2,
+        "release": 0.03
+      },
+      "gain": 0.6
+    },
+    "navigate": {
+      "type": "tone",
+      "waveform": "sine",
+      "frequency": 1050,
+      "duration": 0.2,
+      "envelope": {
+        "attack": 0.003,
+        "decay": 0.15,
+        "sustain": 0,
+        "release": 0.05
+      },
+      "gain": 0.5
+    },
+    "execute": {
+      "type": "tone",
+      "waveform": "sine",
+      "frequency": 620,
+      "duration": 0.1,
+      "envelope": {
+        "attack": 0.005,
+        "decay": 0.03,
+        "sustain": 0.2,
+        "release": 0.03
+      },
+      "gain": 0.5,
+      "noiseBurst": {
+        "duration": 0.04,
+        "gain": 0.25
+      }
+    },
+    "move": {
+      "type": "whoosh",
+      "duration": 0.25,
+      "freqUp": [
+        600,
+        2800
+      ],
+      "freqDown": [
+        2800,
+        600
+      ],
+      "bandwidth": 0.8,
+      "envelope": {
+        "attack": 0.04,
+        "decay": 0.08,
+        "sustain": 0.5,
+        "release": 0.1
+      },
+      "gain": 0.6
+    },
+    "sync": {
+      "type": "whoosh",
+      "duration": 0.32,
+      "freqUp": [
+        400,
+        3200
+      ],
+      "freqDown": [
+        3200,
+        400
+      ],
+      "bandwidth": 0.6,
+      "envelope": {
+        "attack": 0.05,
+        "decay": 0.1,
+        "sustain": 0.45,
+        "release": 0.12
+      },
+      "gain": 0.55,
+      "tonalAnchor": {
+        "freqUp": [
+          350,
+          700
+        ],
+        "freqDown": [
+          700,
+          350
+        ],
+        "envelope": {
+          "attack": 0.03,
+          "decay": 0.1,
+          "sustain": 0.15,
+          "release": 0.08
+        },
+        "gain": 0.2
+      }
+    }
+  },
+  "sessionStart": {
+    "tone1": {
+      "waveform": "sine",
+      "frequency": 523,
+      "duration": 0.18,
+      "envelope": {
+        "attack": 0.01,
+        "decay": 0.08,
+        "sustain": 0.3,
+        "release": 0.06
+      },
+      "gain": 0.5,
+      "harmonicGain": 0.1
+    },
+    "tone2": {
+      "waveform": "sine",
+      "frequency": 659,
+      "duration": 0.22,
+      "envelope": {
+        "attack": 0.01,
+        "decay": 0.1,
+        "sustain": 0.3,
+        "release": 0.08
+      },
+      "gain": 0.45,
+      "harmonicGain": 0.1
+    },
+    "staggerSeconds": 0.07
+  },
+  "sessionEnd": {
+    "tone1": {
+      "waveform": "sine",
+      "frequency": 659,
+      "duration": 0.15,
+      "envelope": {
+        "attack": 0.01,
+        "decay": 0.08,
+        "sustain": 0.2,
+        "release": 0.04
+      },
+      "gain": 0.45
+    },
+    "tone2": {
+      "waveform": "sine",
+      "frequency": 523,
+      "duration": 0.25,
+      "envelope": {
+        "attack": 0.01,
+        "decay": 0.12,
+        "sustain": 0.2,
+        "release": 0.1
+      },
+      "gain": 0.4
+    },
+    "staggerSeconds": 0.08
+  },
+  "ambient": {
+    "droneFreq": 150,
+    "droneWaveform": "sine",
+    "droneGain": 0.12,
+    "chunkDuration": 2,
+    "resolveNote1": 523,
+    "resolveNote2": 659,
+    "resolveWaveform": "sine",
+    "resolveDuration": 0.15,
+    "resolveGain": 0.45
+  }
+}

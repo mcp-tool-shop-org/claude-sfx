@@ -1,0 +1,48 @@
+{
+  "name": "claude-sfx",
+  "version": "0.1.0",
+  "description": "Procedural audio feedback for Claude Code — UX for agentic coding",
+  "type": "module",
+  "bin": {
+    "claude-sfx": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "demo": "node dist/cli.js demo",
+    "play": "node dist/cli.js play"
+  },
+  "keywords": [
+    "claude",
+    "claude-code",
+    "sound",
+    "audio",
+    "feedback",
+    "hooks",
+    "accessibility",
+    "developer-experience",
+    "synth",
+    "procedural-audio"
+  ],
+  "author": "mcp-tool-shop",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mcp-tool-shop-org/claude-sfx.git"
+  },
+  "homepage": "https://mcp-tool-shop-org.github.io/claude-sfx/",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "dist/",
+    "profiles/",
+    "assets/",
+    "README.md",
+    "LICENSE"
+  ],
+  "devDependencies": {
+    "@types/node": "^25.3.1",
+    "typescript": "^5.7.0"
+  }
+}

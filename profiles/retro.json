@@ -1,0 +1,200 @@
+{
+  "name": "retro",
+  "description": "8-bit micro-chirps — fun but controlled",
+  "verbs": {
+    "intake": {
+      "type": "tone",
+      "waveform": "square",
+      "frequency": 480,
+      "frequencyEnd": 720,
+      "duration": 0.1,
+      "envelope": {
+        "attack": 0.005,
+        "decay": 0.04,
+        "sustain": 0.3,
+        "release": 0.02
+      },
+      "gain": 0.4
+    },
+    "transform": {
+      "type": "tone",
+      "waveform": "square",
+      "frequency": 560,
+      "duration": 0.07,
+      "envelope": {
+        "attack": 0.003,
+        "decay": 0.03,
+        "sustain": 0.15,
+        "release": 0.02
+      },
+      "gain": 0.38,
+      "fmRatio": 2,
+      "fmDepth": 50
+    },
+    "commit": {
+      "type": "tone",
+      "waveform": "square",
+      "frequency": 880,
+      "duration": 0.06,
+      "envelope": {
+        "attack": 0.002,
+        "decay": 0.02,
+        "sustain": 0.1,
+        "release": 0.02
+      },
+      "gain": 0.42
+    },
+    "navigate": {
+      "type": "tone",
+      "waveform": "square",
+      "frequency": 1100,
+      "duration": 0.12,
+      "envelope": {
+        "attack": 0.002,
+        "decay": 0.08,
+        "sustain": 0,
+        "release": 0.03
+      },
+      "gain": 0.38
+    },
+    "execute": {
+      "type": "tone",
+      "waveform": "square",
+      "frequency": 660,
+      "duration": 0.08,
+      "envelope": {
+        "attack": 0.002,
+        "decay": 0.03,
+        "sustain": 0.15,
+        "release": 0.02
+      },
+      "gain": 0.38,
+      "noiseBurst": {
+        "duration": 0.03,
+        "gain": 0.3
+      }
+    },
+    "move": {
+      "type": "whoosh",
+      "duration": 0.18,
+      "freqUp": [
+        800,
+        3500
+      ],
+      "freqDown": [
+        3500,
+        800
+      ],
+      "bandwidth": 1,
+      "envelope": {
+        "attack": 0.02,
+        "decay": 0.06,
+        "sustain": 0.4,
+        "release": 0.06
+      },
+      "gain": 0.45
+    },
+    "sync": {
+      "type": "whoosh",
+      "duration": 0.22,
+      "freqUp": [
+        500,
+        4000
+      ],
+      "freqDown": [
+        4000,
+        500
+      ],
+      "bandwidth": 0.8,
+      "envelope": {
+        "attack": 0.03,
+        "decay": 0.06,
+        "sustain": 0.35,
+        "release": 0.08
+      },
+      "gain": 0.42,
+      "tonalAnchor": {
+        "freqUp": [
+          400,
+          800
+        ],
+        "freqDown": [
+          800,
+          400
+        ],
+        "envelope": {
+          "attack": 0.02,
+          "decay": 0.06,
+          "sustain": 0.1,
+          "release": 0.05
+        },
+        "gain": 0.18
+      }
+    }
+  },
+  "sessionStart": {
+    "tone1": {
+      "waveform": "square",
+      "frequency": 523,
+      "duration": 0.1,
+      "envelope": {
+        "attack": 0.005,
+        "decay": 0.04,
+        "sustain": 0.2,
+        "release": 0.03
+      },
+      "gain": 0.4
+    },
+    "tone2": {
+      "waveform": "square",
+      "frequency": 659,
+      "duration": 0.12,
+      "envelope": {
+        "attack": 0.005,
+        "decay": 0.05,
+        "sustain": 0.2,
+        "release": 0.04
+      },
+      "gain": 0.38
+    },
+    "staggerSeconds": 0.06
+  },
+  "sessionEnd": {
+    "tone1": {
+      "waveform": "square",
+      "frequency": 659,
+      "duration": 0.08,
+      "envelope": {
+        "attack": 0.005,
+        "decay": 0.04,
+        "sustain": 0.15,
+        "release": 0.02
+      },
+      "gain": 0.38
+    },
+    "tone2": {
+      "waveform": "square",
+      "frequency": 523,
+      "duration": 0.14,
+      "envelope": {
+        "attack": 0.005,
+        "decay": 0.06,
+        "sustain": 0.15,
+        "release": 0.05
+      },
+      "gain": 0.35
+    },
+    "staggerSeconds": 0.06
+  },
+  "ambient": {
+    "droneFreq": 120,
+    "droneWaveform": "square",
+    "droneGain": 0.08,
+    "chunkDuration": 2,
+    "resolveNote1": 523,
+    "resolveNote2": 784,
+    "resolveWaveform": "square",
+    "resolveDuration": 0.1,
+    "resolveGain": 0.35
+  }
+}
