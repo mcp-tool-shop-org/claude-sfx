@@ -1,4 +1,8 @@
 <p align="center">
+  <a href="README.ja.md">日本語</a> | <a href="README.zh.md">中文</a> | <a href="README.md">English</a> | <a href="README.fr.md">Français</a> | <a href="README.hi.md">हिन्दी</a> | <a href="README.it.md">Italiano</a> | <a href="README.pt-BR.md">Português (BR)</a>
+</p>
+
+<p align="center">
   <img src="assets/logo.png" width="400" alt="Claude-SFX">
 </p>
 
@@ -23,7 +27,7 @@ Eso es todo. Claude Code ahora reproducirá sonidos mientras trabaja.
 
 ## ¿Por qué retroalimentación de audio?
 
-Cuando un agente de IA lee, escribe, busca y despliega en su nombre, pierde visibilidad. Está mirando texto que se desplaza. La retroalimentación de audio restablece la conciencia:
+Cuando un agente de IA lee, escribe, busca y despliega en su nombre, pierde visibilidad. Está mirando texto que se desplaza. La retroalimentación de audio restaura la conciencia:
 
 - **Accesibilidad** — escuche los cambios de estado, los errores y las finalizaciones sin tener que mirar la terminal.
 - **Flujo** — sepa si una prueba ha pasado o si un envío se ha completado sin tener que cambiar de contexto.
@@ -33,15 +37,15 @@ Cuando un agente de IA lee, escribe, busca y despliega en su nombre, pierde visi
 
 Cada acción de Claude Code se corresponde con uno de 7 verbos principales. Los modificadores (estado, alcance, dirección) alteran el sonido sin romper la coherencia.
 
-| Verb | Disparadores | Sound |
-|---|---|---|
-| **entrada** | `Leer`, `WebFetch`, `WebSearch` | Onda sinusoidal ascendente — algo que entra. |
-| **transformación** | `Edit` | Pulso texturizado con FM — remodelación. |
-| **confirmación** | `Escribir`, `NotebookEdit`, `git commit` | Tono de sello nítido — sellado. |
-| **navegación** | `Grep`, `Glob` | Eco de sonar — escaneo. |
-| **ejecución** | `Bash`, `npm test`, `tsc` | Estallido de ruido + tono — acción mecánica. |
-| **movimiento** | `mv`, `cp`, inicio de subagente. | Sonido de viento — desplazamiento de aire. |
-| **sincronización** | `git push`, `git pull` | Sonido de viento dramático + ancla tonal. |
+| Verbo | Desencadenantes | Sonido |
+| --- | --- | --- |
+| **intake** | `Read`, `WebFetch`, `WebSearch` | Seno ascendente suave — algo que está entrando |
+| **transform** | `Edit` | Pulso con textura FM — remodelando |
+| **commit** | `Write`, `NotebookEdit`, `git commit` | Tono de timbre agudo — sellado |
+| **navigate** | `Grep`, `Glob` | Pitido de sonar — escaneando |
+| **execute** | `Bash`, `npm test`, `tsc` | Estallido de ruido + tono — acción mecánica |
+| **move** | `mv`, `cp`, inicio de subagente | Silbido de viento — desplazamiento de aire |
+| **sync** | `git push`, `git pull` | Silbido dramático + ancla tonal |
 
 ### Modificadores
 
@@ -56,26 +60,26 @@ claude-sfx play intake --scope remote     # longer tail (distance feel)
 
 ### Detección inteligente de Bash
 
-El controlador de ganchos inspecciona los comandos de Bash para seleccionar el sonido correcto:
+El controlador de la conexión inspecciona los comandos de Bash para seleccionar el sonido correcto:
 
-| Comando de Bash | Verb | Estado |
-|---|---|---|
-| `git push` | sincronización (subida) | según el código de salida |
-| `git pull` | sincronización (bajada) | según el código de salida |
-| `npm test`, `pytest` | ejecución | según el código de salida |
-| `tsc`, `npm run build` | ejecución | según el código de salida |
-| `mv`, `cp` | move | — |
-| `rm` | move | warn |
-| todo lo demás | ejecución | según el código de salida |
+| Comando de Bash | Verbo | Estado |
+| --- | --- | --- |
+| `git push` | sync (arriba) | desde código de salida |
+| `git pull` | sync (abajo) | desde código de salida |
+| `npm test`, `pytest` | ejecutar | desde código de salida |
+| `tsc`, `npm run build` | ejecutar | desde código de salida |
+| `mv`, `cp` | mover | — |
+| `rm` | mover | advertencia |
+| todo lo demás | ejecutar | desde código de salida |
 
 ## Perfiles
 
 Paletas de sonido que cambian todo el carácter con una sola opción.
 
 | Perfil | Carácter |
-|---|---|
-| **mínimo** (predeterminado) | Tonos de onda sinusoidal — sutil, profesional, para uso diario. |
-| **retro** | Sonidos chirriantes de onda cuadrada de 8 bits — divertido pero controlado. |
+| --- | --- |
+| **minimal** (default) | Tonos de onda sinusoidal — sutiles, profesionales, para uso diario |
+| **retro** | Chirrídos de onda cuadrada de 8 bits — divertidos pero controlados |
 
 ```bash
 claude-sfx demo --profile retro           # hear retro palette
@@ -92,20 +96,20 @@ Copie `profiles/minimal.json`, edite los parámetros de síntesis y cárguelo:
 claude-sfx play navigate --profile ./my-profile.json
 ```
 
-Cada número en el archivo JSON se corresponde directamente con el motor de síntesis: forma de onda, frecuencia, duración, envolvente (ADSR), profundidad de FM, ancho de banda, ganancia.
+Cada número en el archivo JSON se corresponde directamente con el motor de síntesis: forma de onda, frecuencia, duración, envolvente (ADSR), profundidad FM, ancho de banda, ganancia.
 
 ## Anti-molestias
 
 Lo que diferencia un producto de un juguete.
 
 | Función | Comportamiento |
-|---|---|
-| **Debounce** | El mismo verbo dentro de 200 ms → un sonido. |
-| **Rate limit** | Máximo 8 sonidos por ventana de 10 segundos. |
-| **Quiet hours** | Todos los sonidos se suprimen durante las horas configuradas. |
-| **Mute** | Alternancia instantánea, persiste al reiniciar la sesión. |
-| **Volume** | Control de ganancia de 0 a 100. |
-| **Per-verb disable** | Desactive los verbos específicos que no desee. |
+| --- | --- |
+| **Debounce** | El mismo verbo dentro de 200 ms → un sonido |
+| **Rate limit** | Máximo de 8 sonidos por ventana de 10 segundos |
+| **Quiet hours** | Todos los sonidos se suprimen durante las horas configuradas |
+| **Mute** | Activación instantánea, persiste al reiniciar la sesión |
+| **Volume** | Control de ganancia de 0 a 100 |
+| **Per-verb disable** | Desactive verbos específicos que no desee |
 
 ```bash
 claude-sfx mute                            # instant silence
@@ -119,7 +123,7 @@ claude-sfx enable navigate                 # bring it back
 
 ## Ambiente (operaciones de larga duración)
 
-Para comandos que tardan un tiempo (compilaciones, despliegues, conjuntos de pruebas grandes):
+Para comandos que tardan un tiempo (compilaciones, despliegues, suites de pruebas grandes):
 
 ```bash
 claude-sfx ambient-start     # low drone fades in
@@ -167,11 +171,11 @@ Sin archivos de audio. Cada sonido se sintetiza en tiempo de ejecución a partir
 - **Osciladores** — seno, cuadrada, diente de sierra, triángulo, ruido blanco.
 - **Envolventes ADSR** — ataque, decaimiento, sostenimiento, liberación.
 - **Síntesis FM** — modulación de frecuencia para crear texturas.
-- **Filtro de estado variable** — ruido filtrado en banda para efectos de "whoosh".
+- **Filtro de variable de estado** — ruido filtrado en banda para efectos de "whoosh".
 - **Barridos de frecuencia** — interpolación lineal para crear movimiento.
 - **Limitador de volumen** — compresión de rodilla suave, límite máximo.
 
-Todo el paquete tiene aproximadamente 2800 líneas de código TypeScript y no tiene dependencias para producción. Los sonidos se generan como buffers PCM, se codifican a WAV en memoria y se reproducen a través del reproductor de audio nativo del sistema operativo (PowerShell en Windows, afplay en macOS, aplay en Linux).
+Todo el paquete tiene aproximadamente 2800 líneas de código TypeScript y no tiene dependencias para producción. Los sonidos se generan como buffers PCM, se codifican a formato WAV en memoria y se reproducen a través del reproductor de audio nativo del sistema operativo (PowerShell en Windows, afplay en macOS, aplay en Linux).
 
 ## Requisitos:
 

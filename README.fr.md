@@ -1,4 +1,8 @@
 <p align="center">
+  <a href="README.ja.md">日本語</a> | <a href="README.zh.md">中文</a> | <a href="README.es.md">Español</a> | <a href="README.md">English</a> | <a href="README.hi.md">हिन्दी</a> | <a href="README.it.md">Italiano</a> | <a href="README.pt-BR.md">Português (BR)</a>
+</p>
+
+<p align="center">
   <img src="assets/logo.png" width="400" alt="Claude-SFX">
 </p>
 
@@ -8,7 +12,7 @@
   <a href="https://mcp-tool-shop-org.github.io/claude-sfx/"><img src="https://img.shields.io/badge/Landing_Page-live-blue" alt="Landing Page"></a>
 </p>
 
-Retour audio pour [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Chaque appel de fonction, modification de fichier, recherche, envoi Git et exécution d'agent produit un son distinct, synthétisé à partir de formules mathématiques, et non à partir de fichiers audio.
+Retour audio pour [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Chaque appel de fonction, modification de fichier, recherche, envoi vers Git et exécution d'agent produit un son distinct, synthétisé à partir de formules mathématiques, et non à partir de fichiers audio.
 
 ## Démarrage rapide
 
@@ -19,29 +23,29 @@ claude-sfx init       # install hooks into .claude/settings.json
 claude-sfx demo       # hear all 7 verbs
 ```
 
-C'est tout. Claude Code émettra désormais des sons pendant son fonctionnement.
+Voilà. Claude Code émettra désormais des sons pendant son fonctionnement.
 
 ## Pourquoi un retour audio ?
 
-Lorsqu'un agent d'IA lit, écrit, effectue des recherches et déploie des éléments en votre nom, vous perdez de la visibilité. Vous ne voyez qu'un texte défiler. Le retour audio rétablit la conscience :
+Lorsqu'un agent d'IA lit, écrit, effectue des recherches et déploie des éléments en votre nom, vous perdez de la visibilité. Vous ne voyez qu'un texte qui défile. Le retour audio rétablit la conscience :
 
 - **Accessibilité** : écoutez les changements d'état, les erreurs et les confirmations sans avoir à surveiller le terminal.
-- **Fluidité** : sachez si un test a réussi ou si un envoi a été effectué, sans avoir à changer de contexte.
+- **Fluidité** : sachez si un test a réussi ou si une modification a été intégrée sans avoir à changer de contexte.
 - **Présence** : l'agent vous semble être un collaborateur, et non une boîte noire.
 
-## Les 7 verbes
+## Les 7 actions
 
-Chaque action de Claude Code correspond à l'un des 7 verbes principaux. Les modificateurs (état, portée, direction) modifient le son sans rompre la cohérence.
+Chaque action de Claude Code correspond à l'une des 7 actions de base. Les modificateurs (état, portée, direction) modifient le son sans rompre la cohérence.
 
-| Verb | Déclencheurs | Sound |
-|---|---|---|
-| **Réception** | `Lecture`, `WebFetch`, `WebSearch` | Montée douce d'une onde sinusoïdale : quelque chose arrive. |
-| **Transformation** | `Edit` | Impulsion texturée en modulation de fréquence : remodelage. |
-| **Enregistrement** | `Écriture`, `NotebookEdit`, `git commit` | Son de timbre net : scellé. |
-| **Navigation** | `Grep`, `Glob` | Écho sonar : analyse. |
-| **Exécution** | `Bash`, `npm test`, `tsc` | Explosion de bruit + tonalité : action mécanique. |
-| **Déplacement** | `mv`, `cp`, lancement de sous-agent. | Sifflement de vent : déplacement de l'air. |
-| **Synchronisation** | `git push`, `git pull` | Sifflement spectaculaire + ancre tonale. |
+| Action | Déclencheurs | Son |
+| --- | --- | --- |
+| **intake** | `Read`, `WebFetch`, `WebSearch` | Onde sinusoïdale ascendante : quelque chose arrive. |
+| **transform** | `Edit` | Impulsion texturée par modulation de fréquence (FM) : remodelage. |
+| **commit** | `Write`, `NotebookEdit`, `git commit` | Tonnette percutant : confirmation. |
+| **navigate** | `Grep`, `Glob` | Impulsion sonar : analyse. |
+| **execute** | `Bash`, `npm test`, `tsc` | Bruit + ton : action mécanique. |
+| **move** | `mv`, `cp`, lancement de sous-agent. | Sifflement de vent : déplacement d'air. |
+| **sync** | `git push`, `git pull` | Sifflement dramatique + ancre tonale. |
 
 ### Modificateurs
 
@@ -58,24 +62,24 @@ claude-sfx play intake --scope remote     # longer tail (distance feel)
 
 Le gestionnaire de hooks analyse les commandes Bash pour choisir le son approprié :
 
-| Commande Bash | Verb | État |
-|---|---|---|
-| `git push` | synchronisation (montée) | à partir du code de sortie |
-| `git pull` | synchronisation (descente) | à partir du code de sortie |
-| `npm test`, `pytest` | exécution | à partir du code de sortie |
-| `tsc`, `npm run build` | exécution | à partir du code de sortie |
-| `mv`, `cp` | move | — |
-| `rm` | move | warn |
-| tout le reste | exécution | à partir du code de sortie |
+| Commande Bash | Action | État |
+| --- | --- | --- |
+| `git push` | sync (montée) | code de retour |
+| `git pull` | sync (descente) | code de retour |
+| `npm test`, `pytest` | exécution | code de retour |
+| `tsc`, `npm run build` | exécution | code de retour |
+| `mv`, `cp` | déplacement | — |
+| `rm` | déplacement | avertissement |
+| tout le reste | exécution | code de retour |
 
 ## Profils
 
 Palettes de sons qui modifient l'ensemble du comportement avec un seul paramètre.
 
 | Profil | Comportement |
-|---|---|
-| **minimal** (par défaut) | Tons en onde sinusoïdale : subtil, professionnel, pour un usage quotidien. |
-| **rétro** | Chirps en onde carrée 8 bits : amusant mais contrôlé. |
+| --- | --- |
+| **minimal** (default) | Tons en onde sinusoïdale : subtils, professionnels, pour une utilisation quotidienne. |
+| **retro** | Bruits de couinement en onde carrée 8 bits : amusants mais contrôlés. |
 
 ```bash
 claude-sfx demo --profile retro           # hear retro palette
@@ -92,20 +96,20 @@ Copiez `profiles/minimal.json`, modifiez les paramètres de synthèse, puis char
 claude-sfx play navigate --profile ./my-profile.json
 ```
 
-Chaque nombre dans le fichier JSON correspond directement au moteur de synthèse : forme d'onde, fréquence, durée, enveloppe (ADSR), profondeur de modulation de fréquence, bande passante, gain.
+Chaque nombre dans le fichier JSON correspond directement au moteur de synthèse : forme d'onde, fréquence, durée, enveloppe (ADSR), profondeur de modulation de fréquence (FM), bande passante, gain.
 
-## Anti-nuisances
+## Prévention des nuisances
 
-Ce qui distingue un produit d'un jouet.
+Ce qui distingue un produit d'un simple jouet.
 
 | Fonctionnalité | Comportement |
-|---|---|
-| **Debounce** | Même verbe dans un délai de 200 ms → un seul son. |
+| --- | --- |
+| **Debounce** | Même action dans un délai de 200 ms → un seul son. |
 | **Rate limit** | Maximum de 8 sons par fenêtre de 10 secondes. |
-| **Quiet hours** | Tous les sons sont supprimés pendant les heures configurées. |
-| **Mute** | Activation instantanée, persiste après le redémarrage de la session. |
+| **Quiet hours** | Tous les sons sont désactivés pendant les heures configurées. |
+| **Mute** | Activation/désactivation instantanée, persiste après le redémarrage de la session. |
 | **Volume** | Contrôle du gain de 0 à 100. |
-| **Per-verb disable** | Désactivez les verbes spécifiques que vous ne souhaitez pas utiliser. |
+| **Per-verb disable** | Désactivez les actions spécifiques que vous ne souhaitez pas entendre. |
 
 ```bash
 claude-sfx mute                            # instant silence
@@ -117,7 +121,7 @@ claude-sfx disable navigate                # no more search pings
 claude-sfx enable navigate                 # bring it back
 ```
 
-## Son ambiant (opérations de longue durée)
+## Ambiance (opérations de longue durée)
 
 Pour les commandes qui prennent du temps (compilations, déploiements, suites de tests volumineuses) :
 
@@ -164,21 +168,21 @@ Config:
 
 Aucun fichier audio. Chaque son est synthétisé en temps réel à partir de formules mathématiques :
 
-- **Oscillateurs** — sinusoïdale, carrée, en dents de scie, triangulaire, bruit blanc.
-- **Enveloppes ADSR** — attaque, décroissance, sustain, relâchement.
-- **Synthèse FM** — modulation de fréquence pour créer des textures.
-- **Filtre à état variable** — bruit filtré en bande passante pour créer des effets de "whoosh".
-- **Balayages de fréquence** — interpolation linéaire pour créer du mouvement.
-- **Limiteur de volume** — compression "soft-knee", seuil maximum.
+- **Oscillateurs** — sinusoïdale, carrée, en dents de scie, triangulaire, bruit blanc
+- **Enveloppes ADSR** — attaque, décroissance, sustain, relâchement
+- **Synthèse FM** — modulation de fréquence pour créer des textures
+- **Filtre à état variable** — bruit filtré en bande passante pour créer des effets de "whoosh"
+- **Balayages de fréquence** — interpolation linéaire pour créer du mouvement
+- **Limiteur de volume** — compression "soft-knee", seuil maximum
 
-L'ensemble du package comprend environ 2 800 lignes de code TypeScript et ne dépend d'aucune bibliothèque externe pour la production. Les sons sont générés sous forme de tampons PCM, encodés en format WAV en mémoire, et lus via le lecteur audio natif du système d'exploitation (PowerShell sur Windows, afplay sur macOS, aplay sur Linux).
+L'ensemble du package est composé d'environ 2 800 lignes de code TypeScript et ne possède aucune dépendance pour la production. Les sons sont générés sous forme de tampons PCM, encodés en format WAV en mémoire, et lus via le lecteur audio natif du système d'exploitation (PowerShell sur Windows, afplay sur macOS, aplay sur Linux).
 
-## Prérequis :
+## Prérequis
 
-- Node.js 18 ou supérieur.
-- Claude Code.
-- Sortie audio du système (haut-parleurs ou casque).
+- Node.js 18+
+- Claude Code
+- Sortie audio du système (haut-parleurs ou casque)
 
-## Licence :
+## Licence
 
 [MIT](LICENSE)

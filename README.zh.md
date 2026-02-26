@@ -1,4 +1,8 @@
 <p align="center">
+  <a href="README.ja.md">日本語</a> | <a href="README.md">English</a> | <a href="README.es.md">Español</a> | <a href="README.fr.md">Français</a> | <a href="README.hi.md">हिन्दी</a> | <a href="README.it.md">Italiano</a> | <a href="README.pt-BR.md">Português (BR)</a>
+</p>
+
+<p align="center">
   <img src="assets/logo.png" width="400" alt="Claude-SFX">
 </p>
 
@@ -8,7 +12,7 @@
   <a href="https://mcp-tool-shop-org.github.io/claude-sfx/"><img src="https://img.shields.io/badge/Landing_Page-live-blue" alt="Landing Page"></a>
 </p>
 
-对于 [Claude Code](https://docs.anthropic.com/en/docs/claude-code)，我们提供了程序化的音频反馈。 每次工具调用、文件编辑、搜索、git推送以及代理任务都会发出不同的声音，这些声音是通过数学算法合成的，而不是音频文件。
+对于 [Claude Code](https://docs.anthropic.com/en/docs/claude-code)，我们提供了程序化的音频反馈。 每次工具调用、文件编辑、搜索、git推送以及代理任务都会产生不同的声音，这些声音是通过数学算法合成的，而不是音频文件。
 
 ## 快速开始
 
@@ -19,7 +23,7 @@ claude-sfx init       # install hooks into .claude/settings.json
 claude-sfx demo       # hear all 7 verbs
 ```
 
-就此完成了。现在，Claude Code 在工作时会播放声音。
+就此完成了。现在，Claude Code 在工作时会发出声音。
 
 ## 为什么使用音频反馈？
 
@@ -33,15 +37,15 @@ claude-sfx demo       # hear all 7 verbs
 
 Claude Code 的每个操作都对应于 7 种核心动词中的一种。 修饰符（状态、范围、方向）会改变声音，但不会破坏其连贯性。
 
-| Verb | 触发器 | Sound |
-|---|---|---|
-| **输入** | `Read`、`WebFetch`、`WebSearch` | 轻微上升的正弦波——表示接收到内容。 |
-| **转换** | `Edit` | FM 调制脉冲——表示进行重塑。 |
-| **提交** | `Write`、`NotebookEdit`、`git commit` | 清晰的敲击声——表示已完成。 |
-| **导航** | `Grep`、`Glob` | 声纳回声——表示正在扫描。 |
-| **执行** | `Bash`、`npm test`、`tsc` | 噪声爆发 + 声音——表示正在进行机械操作。 |
-| **移动** | `mv`、`cp`、子代理启动 | 风声——表示空气流动。 |
-| **同步** | `git push`、`git pull` | 强烈的风声 + 音调锚点。 |
+| 动词 | 触发器 | 声音 |
+| --- | --- | --- |
+| **intake** | `Read`, `WebFetch`, `WebSearch` | 逐渐上升的正弦波——表示即将到来 |
+| **transform** | `Edit` | FM 调制脉冲——表示重塑 |
+| **commit** | `Write`, `NotebookEdit`, `git commit` | 清晰的敲击声——表示已完成 |
+| **navigate** | `Grep`, `Glob` | 声纳回声——表示扫描 |
+| **execute** | `Bash`, `npm test`, `tsc` | 噪声爆发 + 声音——表示机械动作 |
+| **move** | `mv`、`cp`、子代理启动 | 气流声——表示空气移动 |
+| **sync** | `git push`, `git pull` | 戏剧性的气流声 + 音调锚 |
 
 ### 修饰符
 
@@ -56,26 +60,26 @@ claude-sfx play intake --scope remote     # longer tail (distance feel)
 
 ### 智能 Bash 检测
 
-钩子处理程序会检查 Bash 命令，以选择正确的声音：
+处理程序会检查 Bash 命令，以选择正确的声音：
 
-| Bash 命令 | Verb | 状态 |
-|---|---|---|
-| `git push` | 同步 (上传) | 来自退出码 |
-| `git pull` | 同步 (下载) | 来自退出码 |
-| `npm test`、`pytest` | 执行 | 来自退出码 |
-| `tsc`、`npm run build` | 执行 | 来自退出码 |
-| `mv`、`cp` | move | — |
-| `rm` | move | warn |
-| 其他所有情况 | 执行 | 来自退出码 |
+| Bash 命令 | 动词 | 状态 |
+| --- | --- | --- |
+| `git push` | sync (向上) | 来自退出码 |
+| `git pull` | sync (向下) | 来自退出码 |
+| `npm test`, `pytest` | execute (执行) | 来自退出码 |
+| `tsc`, `npm run build` | execute (执行) | 来自退出码 |
+| `mv`, `cp` | move (移动) | — |
+| `rm` | move (移动) | warn (警告) |
+| 其他所有情况 | execute (执行) | 来自退出码 |
 
 ## 配置文件
 
-声音调色板，可以通过一个标志改变整个声音特性。
+这些配置文件会改变整个声音，只需一个标志即可。
 
-| 配置文件 | 声音特性 |
-|---|---|
-| **简约 (默认)** | 正弦波声音——微妙、专业、日常使用。 |
-| **复古** | 方形波 8 位声音——有趣但可控。 |
+| 配置文件 | 声音风格 |
+| --- | --- |
+| **minimal** (default) | 正弦波声音——微妙、专业、日常使用 |
+| **retro** | 方波 8 位声音——有趣但可控 |
 
 ```bash
 claude-sfx demo --profile retro           # hear retro palette
@@ -92,20 +96,20 @@ claude-sfx config repo retro              # use retro in current directory only
 claude-sfx play navigate --profile ./my-profile.json
 ```
 
-JSON 中的每个数字都直接映射到合成引擎——波形、频率、持续时间、包络（ADSR）、FM 深度、带宽、增益。
+JSON 中的每个数字都直接映射到合成引擎，包括波形、频率、持续时间、包络（ADSR）、FM 深度、带宽和增益。
 
-## 防止烦恼
+## 防厌烦
 
 区分产品和玩具的关键。
 
 | 功能 | 行为 |
-|---|---|
-| **Debounce** | 相同动词在 200 毫秒内重复 → 仅发出一种声音 |
+| --- | --- |
+| **Debounce** | 相同动词在 200 毫秒内出现 → 产生一个声音 |
 | **Rate limit** | 每 10 秒最多 8 个声音 |
 | **Quiet hours** | 在配置的时间段内，所有声音都会被抑制 |
 | **Mute** | 即时切换，重启会话后仍然有效 |
 | **Volume** | 0–100 增益控制 |
-| **Per-verb disable** | 可以关闭不想使用的特定动词 |
+| **Per-verb disable** | 可以关闭您不想听到的特定动词的声音 |
 
 ```bash
 claude-sfx mute                            # instant silence
@@ -162,16 +166,16 @@ Config:
 
 ## 工作原理
 
-没有音频文件。 每一个声音都是在运行时通过数学算法合成的：
+没有音频文件。 每次声音都是在运行时通过数学算法合成的：
 
 - **振荡器** — 正弦波、方波、锯齿波、三角波、白噪声
 - **ADSR 包络线** — 攻击 (attack)、衰减 (decay)、维持 (sustain)、释放 (release)
 - **FM 综合** — 用于产生纹理的频率调制
-- **状态变量滤波器** — 带通滤波噪声，用于产生“嗖嗖”声
-- **频率扫描** — 线性插值，用于产生运动效果
-- **响度限制器** — 软压缩，硬限位
+- **状态变量滤波器** — 用于产生“嗖嗖”声的带通滤波噪声
+- **频率扫描** — 用于产生运动效果的线性插值
+- **响度限制器** — 软压缩、硬限位
 
-整个软件包大约包含 2800 行 TypeScript 代码，且没有任何生产依赖。声音以 PCM 缓冲区生成，在内存中编码为 WAV 格式，并通过操作系统自带的音频播放器播放（Windows 上的 PowerShell，macOS 上的 afplay，Linux 上的 aplay）。
+整个软件包包含约 2800 行 TypeScript 代码，且没有任何生产依赖。声音以 PCM 缓冲区生成，在内存中编码为 WAV 格式，并通过操作系统自带的音频播放器播放（Windows 上的 PowerShell，macOS 上的 afplay，Linux 上的 aplay）。
 
 ## 需求
 
