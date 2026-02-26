@@ -1,6 +1,6 @@
 {
   "name": "@mcptoolshop/claude-sfx",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "Procedural audio feedback for Claude Code — UX for agentic coding",
   "type": "module",
   "bin": {
