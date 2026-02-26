@@ -26,13 +26,13 @@ import { startAmbient, resolveAmbient, isAmbientRunning } from "./ambient.js";
 
 // --- Tool → Verb mapping ---
 
-interface VerbMapping {
+export interface VerbMapping {
   verb: Verb;
   options?: PlayOptions;
 }
 
 /** Map a PostToolUse tool_name to a verb + options. */
-function mapToolToVerb(toolName: string, input: StdinPayload): VerbMapping | null {
+export function mapToolToVerb(toolName: string, input: StdinPayload): VerbMapping | null {
   // Exact matches first
   switch (toolName) {
     case "Read":
@@ -72,7 +72,7 @@ function mapToolToVerb(toolName: string, input: StdinPayload): VerbMapping | nul
 }
 
 /** Map Bash tool usage to a verb, detecting git commands and exit codes. */
-function mapBashVerb(input: StdinPayload): VerbMapping {
+export function mapBashVerb(input: StdinPayload): VerbMapping {
   const toolInput = typeof input.tool_input === "object"
     ? JSON.stringify(input.tool_input)
     : String(input.tool_input ?? "");
@@ -117,7 +117,7 @@ function mapBashVerb(input: StdinPayload): VerbMapping {
 
 // --- Stdin parsing ---
 
-interface StdinPayload {
+export interface StdinPayload {
   session_id?: string;
   cwd?: string;
   hook_event_name?: string;

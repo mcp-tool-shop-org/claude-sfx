@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <img src="assets/logo.png" width="400" alt="Claude-SFX">
+  <img src="assets/logo.jpg" width="400" alt="Claude-SFX">
 </p>
 
 <p align="center">
