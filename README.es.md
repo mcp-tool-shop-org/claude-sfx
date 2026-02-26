@@ -3,7 +3,9 @@
 </p>
 
 <p align="center">
-  <img src="assets/logo.jpg" width="400" alt="Claude-SFX">
+  
+            <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/claude-sfx/readme.png"
+           width="400" alt="Claude-SFX">
 </p>
 
 <p align="center">
