@@ -177,6 +177,14 @@ Zero audio files. Every sound is synthesized at runtime from math:
 
 The entire package is ~2,800 lines of TypeScript with zero production dependencies. Sounds are generated as PCM buffers, encoded to WAV in memory, and played through the OS native audio player (PowerShell on Windows, afplay on macOS, aplay on Linux).
 
+## Security & Privacy
+
+**Data touched:** `~/.claude-sfx/config.json` (preferences), `.claude/settings.json` (hook registration). Audio buffers are generated in memory and never written to disk unless you run `export`.
+
+**Data NOT touched:** source code, git history, network, credentials, environment variables. No telemetry is collected or sent. No audio files are downloaded — every sound is synthesized locally from math.
+
+**Permissions:** filesystem read/write for config and hooks, OS audio player invocation. See [SECURITY.md](SECURITY.md) for the full policy.
+
 ## Requirements
 
 - Node.js 18+

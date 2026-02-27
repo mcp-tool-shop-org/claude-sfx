@@ -12,7 +12,8 @@
     "demo": "node dist/cli.js demo",
     "play": "node dist/cli.js play",
     "test": "vitest run",
-    "prepublishOnly": "npm run build && npm test"
+    "verify": "npm run build && npm test",
+    "prepublishOnly": "npm run verify"
   },
   "keywords": [
     "claude",
@@ -44,6 +45,7 @@
     "profiles/",
     "assets/logo.jpg",
     "README.md",
+    "CHANGELOG.md",
     "LICENSE"
   ],
   "devDependencies": {

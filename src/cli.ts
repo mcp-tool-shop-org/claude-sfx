@@ -47,10 +47,15 @@ import {
 } from "./ambient.js";
 import { installHooks, uninstallHooks } from "./hooks.js";
 import { handleHook } from "./hook-handler.js";
-import { mkdirSync, existsSync } from "node:fs";
-import { join } from "node:path";
+import { SfxError, handleError, EXIT_USER, EXIT_RUNTIME } from "./errors.js";
+import { mkdirSync, existsSync, readFileSync } from "node:fs";
+import { join, dirname } from "node:path";
+import { fileURLToPath } from "node:url";
 
 // --- Argument parsing (zero-dep) ---
+
+/** Boolean flags that don't take a value. */
+const BOOLEAN_FLAGS = new Set(["force", "debug", "version"]);
 
 function parseArgs(argv: string[]): {
   command: string;
@@ -64,14 +69,39 @@ function parseArgs(argv: string[]): {
 
   for (let i = 1; i < args.length; i++) {
     const arg = args[i];
-    if (arg.startsWith("--") && i + 1 < args.length) {
-      flags[arg.slice(2)] = args[++i];
+    if (arg.startsWith("--")) {
+      const name = arg.slice(2);
+      if (BOOLEAN_FLAGS.has(name)) {
+        flags[name] = "true";
+      } else if (i + 1 < args.length) {
+        flags[name] = args[++i];
+      }
     } else {
       positional.push(arg);
     }
   }
 
+  // Top-level flags that act as commands
+  if (args[0] === "--version" || args[0] === "-V") {
+    flags.version = "true";
+  }
+  if (args[0] === "--debug") {
+    flags.debug = "true";
+  }
+
   return { command, positional, flags };
+}
+
+/** Read version from package.json at build time. */
+function getVersion(): string {
+  try {
+    const __dirname = dirname(fileURLToPath(import.meta.url));
+    const pkgPath = join(__dirname, "..", "package.json");
+    const pkg = JSON.parse(readFileSync(pkgPath, "utf-8"));
+    return pkg.version ?? "unknown";
+  } catch {
+    return "unknown";
+  }
 }
 
 /** Resolve the active profile, respecting config + CLI override + repo overrides. */
@@ -598,6 +628,11 @@ function cmdHelp(): void {
     --direction <up|down>           Direction (move/sync verbs)
     --profile <name|path>           Sound profile (default: minimal)
     --force                         Bypass guard (debounce/rate/mute)
+    --debug                         Show stack traces on errors
+
+  Info:
+    --version, -V                   Print version and exit
+    --help, -h                      Show this help
 
   Verbs:
     intake      read / open / fetch
@@ -616,6 +651,13 @@ function cmdHelp(): void {
 // --- Main ---
 
 const { command, positional, flags } = parseArgs(process.argv);
+const debug = flags.debug === "true";
+
+// Handle --version before anything else
+if (flags.version === "true") {
+  console.log(getVersion());
+  process.exit(0);
+}
 
 // hook-handler is async (reads stdin), so wrap in an IIFE
 const run = async () => {
@@ -642,9 +684,12 @@ const run = async () => {
     case "--help":
     case "-h":            cmdHelp(); break;
     default:
-      console.error(`  Unknown command: ${command}`);
-      cmdHelp();
-      process.exit(1);
+      console.error(`  Error [INPUT_UNKNOWN_COMMAND]: Unknown command "${command}".`);
+      console.error("  Hint: Run claude-sfx --help for available commands.");
+      process.exit(EXIT_USER);
   }
 };
-run();
+
+run().catch((err) => {
+  process.exit(handleError(err, debug));
+});
