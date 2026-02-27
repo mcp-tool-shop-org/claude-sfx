@@ -7,12 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-02-27
+
 ### Added
 - Structured error handling with `SfxError` class (code/message/hint/cause/retryable)
 - `--version` / `-V` flag
 - `--debug` flag for stack traces on errors
-- CI workflow with type checking, tests, and dependency audit
+- CI workflow with type checking, tests, coverage, and dependency audit
+- Codecov integration
 - SECURITY.md, CHANGELOG.md, SCORECARD.md (Shipcheck compliance)
+- Threat model section in README
 - `verify` script (build + test in one command)
 
 ## [0.1.2] - 2026-02-27

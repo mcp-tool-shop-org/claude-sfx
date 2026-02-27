@@ -7,17 +7,19 @@
 </p>
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/claude-sfx"><img src="https://img.shields.io/npm/v/claude-sfx" alt="npm version"></a>
+  <a href="https://www.npmjs.com/package/@mcptoolshop/claude-sfx"><img src="https://img.shields.io/npm/v/@mcptoolshop/claude-sfx" alt="npm version"></a>
+  <a href="https://github.com/mcp-tool-shop-org/claude-sfx/actions/workflows/ci.yml"><img src="https://github.com/mcp-tool-shop-org/claude-sfx/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  <a href="https://codecov.io/gh/mcp-tool-shop-org/claude-sfx"><img src="https://codecov.io/gh/mcp-tool-shop-org/claude-sfx/branch/main/graph/badge.svg" alt="codecov"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue" alt="MIT License"></a>
   <a href="https://mcp-tool-shop-org.github.io/claude-sfx/"><img src="https://img.shields.io/badge/Landing_Page-live-blue" alt="Landing Page"></a>
 </p>
 
-Feedback audio procedurale per [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Ogni chiamata a uno strumento, modifica di un file, ricerca, push Git e invio di un agente produce un suono distinto, generato tramite calcoli matematici, non tramite file audio.
+Feedback audio procedurale per [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Ogni chiamata a uno strumento, modifica di un file, ricerca, push Git e invio di un agente produce un suono distinto, sintetizzato a partire da formule matematiche, non da file audio.
 
 ## Guida rapida
 
 ```bash
-npm install -g claude-sfx
+npm install -g @mcptoolshop/claude-sfx
 cd your-project
 claude-sfx init       # install hooks into .claude/settings.json
 claude-sfx demo       # hear all 7 verbs
@@ -27,24 +29,24 @@ Ecco tutto. Claude Code ora riprodurrà dei suoni mentre lavora.
 
 ## Perché il feedback audio?
 
-Quando un agente AI legge, scrive, cerca e distribuisce al posto tuo, si perde la visibilità. Si sta fissando un testo che scorre. Il feedback audio ripristina la consapevolezza:
+Quando un agente AI legge, scrive, cerca e distribuisce al posto tuo, si perde la visibilità. Vi trovate a fissare un testo che scorre. Il feedback audio ripristina la consapevolezza:
 
-- **Accessibilità** — ascoltare i cambiamenti di stato, gli errori e i completamenti senza guardare il terminale.
-- **Fluidità** — sapere se un test è superato o se un aggiornamento è stato completato senza dover cambiare contesto.
+- **Accessibilità** — ascoltate i cambiamenti di stato, gli errori e i completamenti senza dover guardare il terminale.
+- **Fluidità** — sapete se un test è superato o se un aggiornamento è stato completato senza dover cambiare contesto.
 - **Presenza** — l'agente sembra un collaboratore, non una scatola nera.
 
 ## I 7 verbi
 
-Ogni azione di Claude Code corrisponde a uno dei 7 verbi principali. I modificatori (stato, ambito, direzione) alterano il suono senza compromettere la coerenza.
+Ogni azione di Claude Code corrisponde a uno dei 7 verbi principali. I modificatori (stato, ambito, direzione) alterano il suono senza comprometterne la coerenza.
 
 | Verbo | Trigger | Suono |
-| --- | --- | --- |
+|---|---|---|
 | **intake** | `Read`, `WebFetch`, `WebSearch` | Onda sinusoidale in aumento — qualcosa sta arrivando |
 | **transform** | `Edit` | Impulso con texture FM — rimodellamento |
 | **commit** | `Write`, `NotebookEdit`, `git commit` | Tono di timbro deciso — completato |
-| **navigate** | `Grep`, `Glob` | Ronzio simile a un sonar — scansione |
+| **navigate** | `Grep`, `Glob` | Ping sonar — scansione |
 | **execute** | `Bash`, `npm test`, `tsc` | Esplosione di rumore + tono — azione meccanica |
-| **move** | `mv`, `cp`, avvio di un sub-agente | Fruscio del vento — spostamento dell'aria |
+| **move** | `mv`, `cp`, avvio di un sub-agente | Fruscio di vento — spostamento dell'aria |
 | **sync** | `git push`, `git pull` | Fruscio drammatico + ancoraggio tonale |
 
 ### Modificatori
@@ -63,21 +65,21 @@ claude-sfx play intake --scope remote     # longer tail (distance feel)
 Il gestore degli eventi analizza i comandi Bash per scegliere il suono corretto:
 
 | Comando Bash | Verbo | Stato |
-| --- | --- | --- |
-| `git push` | sync (in alto) | dal codice di uscita |
-| `git pull` | sync (in basso) | dal codice di uscita |
-| `npm test`, `pytest` | esegui | dal codice di uscita |
-| `tsc`, `npm run build` | esegui | dal codice di uscita |
-| `mv`, `cp` | sposta | — |
-| `rm` | sposta | avviso |
-| tutto il resto | esegui | dal codice di uscita |
+|---|---|---|
+| `git push` | sync (in aumento) | in base al codice di uscita |
+| `git pull` | sync (in diminuzione) | in base al codice di uscita |
+| `npm test`, `pytest` | esecuzione | in base al codice di uscita |
+| `tsc`, `npm run build` | esecuzione | in base al codice di uscita |
+| `mv`, `cp` | spostamento | — |
+| `rm` | spostamento | avviso |
+| tutto il resto | esecuzione | in base al codice di uscita |
 
 ## Profili
 
-Palette di suoni che cambiano completamente il carattere con un'unica opzione.
+Palette di suoni che modificano l'intero comportamento con un'unica opzione.
 
-| Profilo | Carattere |
-| --- | --- |
+| Profilo | Comportamento |
+|---|---|
 | **minimal** (default) | Toni a onda sinusoidale — sottili, professionali, adatti all'uso quotidiano |
 | **retro** | Cinguettii a onda quadra a 8 bit — divertenti ma controllati |
 
@@ -90,7 +92,7 @@ claude-sfx config repo retro              # use retro in current directory only
 
 ### Profili personalizzati
 
-Copia `profiles/minimal.json`, modifica i parametri di sintesi e caricalo:
+Copiate `profiles/minimal.json`, modificate i parametri di sintesi e caricate il file:
 
 ```bash
 claude-sfx play navigate --profile ./my-profile.json
@@ -103,13 +105,13 @@ Ogni numero nel file JSON corrisponde direttamente al motore di sintesi: forma d
 Ciò che distingue un prodotto da un giocattolo.
 
 | Funzionalità | Comportamento |
-| --- | --- |
-| **Debounce** | Lo stesso verbo entro 200 ms → un suono |
-| **Rate limit** | Max 8 suoni per una finestra di 10 secondi |
+|---|---|
+| **Debounce** | Lo stesso verbo entro 200 ms → un solo suono |
+| **Rate limit** | Massimo 8 suoni in una finestra di 10 secondi |
 | **Quiet hours** | Tutti i suoni disattivati durante le ore configurate |
-| **Mute** | Attivazione/disattivazione istantanea, sopravvive al riavvio della sessione |
+| **Mute** | Attivazione/disattivazione istantanea, persiste al riavvio della sessione |
 | **Volume** | Controllo del guadagno da 0 a 100 |
-| **Per-verb disable** | Disattivare verbi specifici che non si desidera utilizzare |
+| **Per-verb disable** | Disattivate i verbi specifici che non desiderate |
 
 ```bash
 claude-sfx mute                            # instant silence
@@ -166,16 +168,24 @@ Config:
 
 ## Come funziona
 
-Nessun file audio. Ogni suono è generato al runtime tramite calcoli matematici:
+Nessun file audio. Ogni suono è sintetizzato in fase di esecuzione a partire da formule matematiche:
 
-- **Oscillatori** — sinusoidale, quadrato, a dente di sega, triangolare, rumore bianco
-- **Involucri ADSR** — attacco, decadimento, sustain, rilascio
-- **Sintesi FM** — modulazione di frequenza per creare texture
-- **Filtro a variabile di stato** — rumore filtrato in banda passante per effetti di "whoosh"
-- **Sweep di frequenza** — interpolazione lineare per creare movimento
-- **Limitatore di volume** — compressione "soft-knee", limite massimo rigido
+- **Oscillatori** — seno, quadrato, a dente di sega, triangolo, rumore bianco
+- **Inviluppi ADSR** — attacco, decadimento, sustain, rilascio
+- **Sintesi FM** — modulazione di frequenza per la texture
+- **Filtro a variabile di stato** — rumore filtrato in banda per i fruscii
+- **Sweep di frequenza** — interpolazione lineare per il movimento
+- **Limitatore di volume** — compressione soft-knee, limite massimo
 
-L'intero pacchetto è composto da circa 2.800 righe di codice TypeScript e non presenta dipendenze per la produzione. I suoni vengono generati come buffer PCM, codificati in formato WAV in memoria e riprodotti tramite il lettore audio nativo del sistema operativo (PowerShell su Windows, afplay su macOS, aplay su Linux).
+L'intero pacchetto è composto da circa 2.800 righe di TypeScript con zero dipendenze per la produzione. I suoni vengono generati come buffer PCM, codificati in WAV in memoria e riprodotti tramite il lettore audio nativo del sistema operativo (PowerShell su Windows, afplay su macOS, aplay su Linux).
+
+## Sicurezza e privacy
+
+**Dati a cui si accede:** `~/.claude-sfx/config.json` (preferenze), `.claude/settings.json` (registrazione degli hook). I buffer audio vengono generati in memoria e non vengono mai scritti su disco, a meno che non si esegua il comando `export`.
+
+**Dati a cui NON si accede:** codice sorgente, cronologia di Git, rete, credenziali, variabili d'ambiente. Non vengono raccolti né trasmessi dati di telemetria. Nessun file audio viene scaricato; ogni suono viene sintetizzato localmente a partire da equazioni matematiche.
+
+**Autorizzazioni:** lettura/scrittura del file system per la configurazione e gli hook, invocazione del lettore audio del sistema operativo. Consultare il file [SECURITY.md](SECURITY.md) per la politica completa.
 
 ## Requisiti
 
@@ -186,3 +196,7 @@ L'intero pacchetto è composto da circa 2.800 righe di codice TypeScript e non p
 ## Licenza
 
 [MIT](LICENSE)
+
+---
+
+Creato da <a href="https://mcp-tool-shop.github.io/">MCP Tool Shop</a>

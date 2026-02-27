@@ -7,7 +7,9 @@
 </p>
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/claude-sfx"><img src="https://img.shields.io/npm/v/claude-sfx" alt="npm version"></a>
+  <a href="https://www.npmjs.com/package/@mcptoolshop/claude-sfx"><img src="https://img.shields.io/npm/v/@mcptoolshop/claude-sfx" alt="npm version"></a>
+  <a href="https://github.com/mcp-tool-shop-org/claude-sfx/actions/workflows/ci.yml"><img src="https://github.com/mcp-tool-shop-org/claude-sfx/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  <a href="https://codecov.io/gh/mcp-tool-shop-org/claude-sfx"><img src="https://codecov.io/gh/mcp-tool-shop-org/claude-sfx/branch/main/graph/badge.svg" alt="codecov"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue" alt="MIT License"></a>
   <a href="https://mcp-tool-shop-org.github.io/claude-sfx/"><img src="https://img.shields.io/badge/Landing_Page-live-blue" alt="Landing Page"></a>
 </p>
@@ -17,7 +19,7 @@ Feedback de áudio procedural para [Claude Code](https://docs.anthropic.com/en/d
 ## Início Rápido
 
 ```bash
-npm install -g claude-sfx
+npm install -g @mcptoolshop/claude-sfx
 cd your-project
 claude-sfx init       # install hooks into .claude/settings.json
 claude-sfx demo       # hear all 7 verbs
@@ -38,11 +40,11 @@ Quando um agente de IA lê, escreve, pesquisa e implanta em seu nome, você perd
 Cada ação do Claude Code corresponde a um dos 7 verbos principais. Modificadores (status, escopo, direção) alteram o som sem comprometer a coerência.
 
 | Verbo | Gatilhos | Som |
-| --- | --- | --- |
+|---|---|---|
 | **intake** | `Read`, `WebFetch`, `WebSearch` | Onda senoidal ascendente — algo chegando |
 | **transform** | `Edit` | Pulso texturizado por FM — remodelando |
-| **commit** | `Write`, `NotebookEdit`, `git commit` | Tom de sino agudo — selado |
-| **navigate** | `Grep`, `Glob` | Sinal sonár — escaneando |
+| **commit** | `Write`, `NotebookEdit`, `git commit` | Tom de estalo agudo — finalizado |
+| **navigate** | `Grep`, `Glob` | Ping de sonar — escaneando |
 | **execute** | `Bash`, `npm test`, `tsc` | Ruído + tom — ação mecânica |
 | **move** | `mv`, `cp`, criação de subagente | Sopro de vento — deslocamento de ar |
 | **sync** | `git push`, `git pull` | Sopro dramático + âncora tonal |
@@ -63,23 +65,23 @@ claude-sfx play intake --scope remote     # longer tail (distance feel)
 O manipulador de eventos inspeciona os comandos Bash para escolher o som correto:
 
 | Comando Bash | Verbo | Status |
-| --- | --- | --- |
+|---|---|---|
 | `git push` | sync (para cima) | com base no código de saída |
 | `git pull` | sync (para baixo) | com base no código de saída |
-| `npm test`, `pytest` | executar | com base no código de saída |
-| `tsc`, `npm run build` | executar | com base no código de saída |
-| `mv`, `cp` | mover | — |
-| `rm` | mover | aviso |
-| tudo o mais | executar | com base no código de saída |
+| `npm test`, `pytest` | execução | com base no código de saída |
+| `tsc`, `npm run build` | execução | com base no código de saída |
+| `mv`, `cp` | movimento | — |
+| `rm` | movimento | aviso |
+| tudo o mais | execução | com base no código de saída |
 
 ## Perfis
 
-Conjuntos de sons que alteram todo o comportamento com um único parâmetro.
+Paletas de som que alteram todo o "caráter" com um único parâmetro.
 
-| Perfil | Comportamento |
-| --- | --- |
+| Perfil | Caráter |
+|---|---|
 | **minimal** (default) | Tons de onda senoidal — sutis, profissionais, para uso diário |
-| **retro** | Sons de onda quadrada em 8 bits — divertidos, mas controlados |
+| **retro** | Ruídos de onda quadrada em 8 bits — divertidos, mas controlados |
 
 ```bash
 claude-sfx demo --profile retro           # hear retro palette
@@ -96,16 +98,16 @@ Copie `profiles/minimal.json`, edite os parâmetros de síntese e carregue-o:
 claude-sfx play navigate --profile ./my-profile.json
 ```
 
-Cada número no arquivo JSON corresponde diretamente ao motor de síntese — forma de onda, frequência, duração, envelope (ADSR), profundidade de modulação por frequência (FM), largura de banda, ganho.
+Cada número no JSON corresponde diretamente ao motor de síntese — forma de onda, frequência, duração, envelope (ADSR), profundidade de modulação por frequência (FM), largura de banda, ganho.
 
-## Anti-Irritação
+## Prevenção de Irritação
 
 O que diferencia um produto de um brinquedo.
 
 | Recurso | Comportamento |
-| --- | --- |
-| **Debounce** | O mesmo verbo dentro de 200ms → um som |
-| **Rate limit** | Máximo de 8 sons em uma janela de 10 segundos |
+|---|---|
+| **Debounce** | Mesmo verbo dentro de 200ms → um som |
+| **Rate limit** | Máximo de 8 sons por janela de 10 segundos |
 | **Quiet hours** | Todos os sons são suprimidos durante as horas configuradas |
 | **Mute** | Alternância instantânea, persiste após a reinicialização da sessão |
 | **Volume** | Controle de ganho de 0 a 100 |
@@ -139,7 +141,7 @@ claude-sfx session-start     # two-note ascending chime (boot)
 claude-sfx session-end       # two-note descending chime (closure)
 ```
 
-## Todos os Comandos
+## Todos os comandos
 
 ```
 Setup:
@@ -168,21 +170,33 @@ Config:
 
 Nenhum arquivo de áudio. Cada som é sintetizado em tempo de execução a partir de cálculos matemáticos:
 
-- **Osciladores** — senoidal, quadrado, dente de serra, triangular, ruído branco
+- **Osciladores** — seno, quadrado, dente de serra, triângulo, ruído branco
 - **Envelopes ADSR** — ataque, decaimento, sustentação, liberação
-- **Síntese FM** — modulação de frequência para texturas
-- **Filtro de variável de estado** — ruído filtrado em banda para efeitos sonoros
+- **Síntese por modulação de frequência (FM)** — para textura
+- **Filtro de estado variável** — ruído filtrado em banda para sons de "whoosh"
 - **Varreduras de frequência** — interpolação linear para movimento
 - **Limitador de volume** — compressão "soft-knee", limite máximo
 
-O pacote completo tem aproximadamente 2.800 linhas de código TypeScript e não possui dependências para produção. Os sons são gerados como buffers PCM, codificados em WAV na memória e reproduzidos através do reprodutor de áudio nativo do sistema operacional (PowerShell no Windows, afplay no macOS, aplay no Linux).
+Todo o pacote tem aproximadamente 2.800 linhas de TypeScript, sem dependências de produção. Os sons são gerados como buffers PCM, codificados para WAV na memória e reproduzidos através do reprodutor de áudio nativo do sistema operacional (PowerShell no Windows, afplay no macOS, aplay no Linux).
 
-## Requisitos:
+## Segurança e Privacidade
+
+**Dados acessados:** `~/.claude-sfx/config.json` (preferências), `.claude/settings.json` (registro de hooks). Os buffers de áudio são gerados na memória e nunca são gravados em disco, a menos que você execute o comando `export`.
+
+**Dados NÃO acessados:** código-fonte, histórico do Git, rede, credenciais, variáveis de ambiente. Nenhuma informação de telemetria é coletada ou enviada. Nenhum arquivo de áudio é baixado; todos os sons são sintetizados localmente a partir de cálculos matemáticos.
+
+**Permissões:** leitura/escrita no sistema de arquivos para configurações e hooks, invocação do reprodutor de áudio do sistema operacional. Consulte o arquivo [SECURITY.md](SECURITY.md) para a política completa.
+
+## Requisitos
 
 - Node.js 18 ou superior
 - Claude Code
 - Saída de áudio do sistema (alto-falantes ou fones de ouvido)
 
-## Licença:
+## Licença
 
 [MIT](LICENSE)
+
+---
+
+Desenvolvido por <a href="https://mcp-tool-shop.github.io/">MCP Tool Shop</a>

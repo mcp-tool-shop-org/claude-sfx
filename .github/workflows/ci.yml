@@ -41,7 +41,21 @@ jobs:
         run: npx tsc --noEmit
 
       - name: Run tests
+        if: matrix.node-version != 22
         run: npm test
+
+      - name: Run tests with coverage
+        if: matrix.node-version == 22
+        run: npx vitest run --coverage
+
+      - name: Upload coverage
+        if: matrix.node-version == 22
+        uses: codecov/codecov-action@v4
+        with:
+          files: coverage/coverage-final.json
+          fail_ci_if_error: false
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
       - name: Dependency audit
         run: npm audit --omit=dev || true
