@@ -15,7 +15,7 @@ export const config: SiteConfig = {
     headlineAccent: 'think.',
     description: 'Procedural audio feedback for Claude Code. Every tool call, file edit, search, and git push gets a distinct sound — synthesized from math, not audio files.',
     primaryCta: { href: '#quick-start', label: 'Get started' },
-    secondaryCta: { href: '#the-7-verbs', label: 'See the verbs' },
+    secondaryCta: { href: 'handbook/', label: 'Read the Handbook' },
     previews: [
       { label: 'Install', code: 'npm install -g claude-sfx' },
       { label: 'Init', code: 'claude-sfx init' },
